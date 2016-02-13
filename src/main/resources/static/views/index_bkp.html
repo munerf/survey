@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet"
+	href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+</head>
+<body ng-app="surveyApp">
+	<div class="container" ng-controller="SurveyController">
+		<div class="page-header">
+			<h1>Survey</h1>
+		</div>
+		<div class="alert alert-info" role="alert" ng-hide="survey">
+			Ainda não começou.</div>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">Lorem ipsum dolor sit amet</div>
+			<div class="panel-body">
+				<form class="form-horizontal" role="form" ng-submit="">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-6 ">
+								<div class="col-md-offset-4">
+									{{ currentQuestion.firstChoice | uppercase}}
+									<div class="checkbox">
+										<label> <input ng-model='fst'
+											ng-click='selectedAnswer = null' type="checkbox" value="">Desconheço
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="col-md-offset-4">
+									{{currentQuestion.secondChoice | uppercase}}
+									<div class="checkbox">
+										<label> <input ng-model='snd'
+											ng-click='selectedAnswer = null' type="checkbox" value="">Desconheço
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-offset-3">
+								<span> Nada Relacionados </span> <label class="radio-inline"
+									ng-repeat='i in [1,2,3,4,5,6,7,8,9]'> <input
+									ng-disabled='$parent.fst || $parent.snd'
+									ng-model="$parent.selectedAnswer" value='{{i}}' type="radio"
+									name="optradio"> {{i}}
+								</label> <span> Muito Relacionados </span>
+							</div>
+						</div>
+						<br>
+<!-- 						<div class="row"> -->
+							<div class="col-md-6">
+								<button class="btn btn-default"
+									ng-disabled='!(fst || snd || selectedAnswer!=null)'
+									ng-click="nextQuestion()" title="Add">
+									Seguinte <span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</div>
+							<div class="col-md-6">
+								<button class="btn btn-default" ng-click="save(survey)"
+									title="Save">Finalizar</button>
+							</div>
+<!-- 						</div> -->
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		src="./bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript"
+		src="./bower_components/angular-resource/angular-resource.min.js"></script>
+	<!--     <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script> -->
+	<script type="text/javascript" src="./app/app.js"></script>
+	<script type="text/javascript" src="./app/controllers.js"></script>
+	<script type="text/javascript" src="./app/services.js"></script>
+</body>
+</html>
