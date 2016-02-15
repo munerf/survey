@@ -1,16 +1,21 @@
 package mm.survey.webapp.model;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -31,13 +36,10 @@ public class Survey {
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Answer> answers;
 	
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	private LocalDateTime startDate;
-	
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	private LocalDateTime endDate;
 
 	@OneToOne(cascade=CascadeType.ALL)

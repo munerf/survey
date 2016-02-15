@@ -1,8 +1,9 @@
 package mm.survey.webapp.service;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,8 +32,8 @@ public class SurveyService {
 	}
 
 	public Survey saveSurvey(int id, Survey survey) {
+		survey.setEndDate(LocalDateTime.now());
 		return repository.saveAndFlush(survey);
 	}
-	
 	
 }
