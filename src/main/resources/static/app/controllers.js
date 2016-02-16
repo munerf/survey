@@ -16,7 +16,7 @@ angular.module('surveyApp.controllers', []).controller('SurveyController', funct
 	$scope.start = function() {
 		Survey.start({id: $scope.selected.list}, function(result){
 			$scope.survey = result ? result : {};
-			$scope.survey.questions = $scope.survey.questions.slice(0,10);
+			$scope.survey.questions = $scope.survey.questions; //.slice(0,10);
 			$scope.numberOfQuestions = $scope.survey.questions.length;
 			$scope.currentQuestion = $scope.survey ? $scope.survey.questions[$scope.currentQuestionIndex] : {};
 			$scope.survey.answers = [];	
