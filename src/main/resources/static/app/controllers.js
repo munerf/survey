@@ -46,7 +46,6 @@ angular.module('surveyApp.controllers', []).controller('SurveyController', funct
 		$scope.selected.snd = false;
 		$scope.selected.selectedAnswer = -1;
 
-
 	}
 	
 	$scope.save = function(survey){
