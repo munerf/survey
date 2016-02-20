@@ -1,30 +1,36 @@
-angular.module('surveyApp', ['ui.router','ngResource','surveyApp.controllers', 'surveyApp.services'])
+angular.module('surveyApp', ['ui.bootstrap','ui.router','ngResource','surveyApp.controllers', 'surveyApp.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.otherwise('/setup');
 	
 	$stateProvider
 	
-		.state('setup', {
-			url : '/setup',
+		.state('survey', {
+			url : '/survey',
 	        templateUrl : 'views/setup.html'
 	    })
 
-        .state('participant', {
+        .state('survey.participant', {
         	url : '/participant',
             templateUrl : 'views/participant.html'
         })
 
-        .state('survey', {
-        	url : '/survey',
+        .state('survey.question', {
+        	url : '	/question',
             templateUrl : 'views/question.html'
         })
         
-         .state('end', {
+         .state('survey.end', {
         	url : '/end',
             templateUrl : 'views/thankyou.html'
         })
         
+          .state('survey.endblock', {
+        	url : '/endblock',
+            templateUrl : 'views/endblock.html'
+        })
+        
         ;
+	$urlRouterProvider.otherwise('/survey');
+
 })
 ;

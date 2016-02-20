@@ -10,6 +10,8 @@ import mm.survey.webapp.model.Question;
 @Component
 public interface QuestionRepository extends JpaRepository<Question, Long>{
 	
-	Set<Question> findByList(int list);
+	public Set<Question> findByList(int list);
+	
+	public Set<Question> findByListAndBlock(int list, String block);
 	
 }

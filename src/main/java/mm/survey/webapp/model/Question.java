@@ -12,12 +12,42 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String firstChoiceLanaguage;
+	
 	private String firstChoice;
 
 	private String secondChoice;
 	
+	private String secondChoiceLanguage;
+	
+	public String getFirstChoiceLanaguage() {
+		return firstChoiceLanaguage;
+	}
+
+	public void setFirstChoiceLanaguage(String firstChoiceLanaguage) {
+		this.firstChoiceLanaguage = firstChoiceLanaguage;
+	}
+
+	public String getSecondChoiceLanguage() {
+		return secondChoiceLanguage;
+	}
+
+	public void setSecondChoiceLanguage(String secondChoiceLanguage) {
+		this.secondChoiceLanguage = secondChoiceLanguage;
+	}
+
 	private int list;
 	
+	private String block;
+	
+	public String getBlock() {
+		return block;
+	}
+
+	public void setBlock(String block) {
+		this.block = block;
+	}
+
 	public int getList() {
 		return list; 
 	}

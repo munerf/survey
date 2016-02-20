@@ -1,4 +1,4 @@
-angular.module('surveyApp.controllers', []).controller('SurveyController', function($scope, Survey) {
+angular.module('surveyApp.controllers', []).controller('SurveyController',['$scope', '$state', 'Survey', function($scope, $state, Survey) {
 	
 	$scope.survey = {};
 	
@@ -45,6 +45,12 @@ angular.module('surveyApp.controllers', []).controller('SurveyController', funct
 		$scope.selected.fst = false;
 		$scope.selected.snd = false;
 		$scope.selected.selectedAnswer = -1;
+		
+		// check if current block has ended
+		if($scope.currentQuestionIndex == 1){
+			debugger;
+			$state.go('end', {}, {location:true, reload:true});
+		}
 
 	}
 	
@@ -54,5 +60,5 @@ angular.module('surveyApp.controllers', []).controller('SurveyController', funct
 		console.log(survey);
 	}
 	
-});
+}]);
 
