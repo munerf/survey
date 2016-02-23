@@ -30,6 +30,8 @@ angular.module('surveyApp.controllers', [])
 		console.log("current question index " + $scope.currentQuestionIndex);
 		console.log("current question" + $scope.currentQuestion);
 		console.log("current question block" + $scope.currentQuestion.block);
+		console.log("number of questions" + $scope.numberOfQuestions);
+
 
 		$scope.currentQuestionIndex++;
 		$scope.currentQuestion = $scope.survey.questions[$scope.currentQuestionIndex];
@@ -49,7 +51,7 @@ angular.module('surveyApp.controllers', [])
 		$scope.selected.selectedAnswer = -1;
 		
 		// check if current block has ended
-		if($scope.currentQuestionIndex == 1){
+		if($scope.currentQuestionIndex == 119 || $scope.currentQuestionIndex == 239 ){
 			$state.go('survey.endblock');
 
 			$timeout(function(){
