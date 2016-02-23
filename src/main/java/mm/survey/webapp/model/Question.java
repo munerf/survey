@@ -12,7 +12,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String firstChoiceLanaguage;
+	private String firstChoiceLanguage;
 	
 	private String firstChoice;
 
@@ -20,12 +20,12 @@ public class Question {
 	
 	private String secondChoiceLanguage;
 	
-	public String getFirstChoiceLanaguage() {
-		return firstChoiceLanaguage;
+	public String getFirstChoiceLanguage() {
+		return firstChoiceLanguage;
 	}
 
-	public void setFirstChoiceLanaguage(String firstChoiceLanaguage) {
-		this.firstChoiceLanaguage = firstChoiceLanaguage;
+	public void setFirstChoiceLanguage(String firstChoiceLanaguage) {
+		this.firstChoiceLanguage = firstChoiceLanaguage;
 	}
 
 	public String getSecondChoiceLanguage() {

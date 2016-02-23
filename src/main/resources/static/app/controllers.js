@@ -1,5 +1,6 @@
-angular.module('surveyApp.controllers', []).controller('SurveyController',['$scope', '$state', 'Survey', function($scope, $state, Survey) {
-	
+angular.module('surveyApp.controllers', [])
+	.controller('SurveyController',['$scope', '$state', '$timeout', 'Survey', function($scope, $state, $timeout, Survey) {
+
 	$scope.survey = {};
 	
 	$scope.currentQuestion = {};
@@ -28,6 +29,7 @@ angular.module('surveyApp.controllers', []).controller('SurveyController',['$sco
 	
 		console.log("current question index " + $scope.currentQuestionIndex);
 		console.log("current question" + $scope.currentQuestion);
+		console.log("current question block" + $scope.currentQuestion.block);
 
 		$scope.currentQuestionIndex++;
 		$scope.currentQuestion = $scope.survey.questions[$scope.currentQuestionIndex];
@@ -48,8 +50,11 @@ angular.module('surveyApp.controllers', []).controller('SurveyController',['$sco
 		
 		// check if current block has ended
 		if($scope.currentQuestionIndex == 1){
-			debugger;
-			$state.go('end', {}, {location:true, reload:true});
+			$state.go('survey.endblock');
+
+			$timeout(function(){
+				$state.go('survey.question')
+			}, 3000);
 		}
 
 	}
@@ -59,6 +64,6 @@ angular.module('surveyApp.controllers', []).controller('SurveyController',['$sco
 		survey.$update();
 		console.log(survey);
 	}
-	
+
 }]);
 

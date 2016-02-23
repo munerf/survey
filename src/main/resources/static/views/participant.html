@@ -1,68 +1,59 @@
-<div class="container">
-	<div class="row">
-		<div class="page-header">
-			<h1>Questionário</h1>
+<form class="form-horizontal" role="form" method="post" action="">
+
+	<div class="form-group">
+		<label for="firstName" class="col-sm-2 control-label">Nome</label>
+		<div class="col-sm-6">
+			<input ng-model='participant.name' type="text" name="firstName" class="form-control"
+				id="firstName" placeholder="Nome (opcional)">
 		</div>
-		<form class="form-horizontal" role="form" method="post" action="">
-
-			<div class="form-group">
-				<label for="firstName" class="col-sm-2 control-label">Nome</label>
-				<div class="col-sm-6">
-					<input ng-model='participant.name' type="text" name="firstName" class="form-control"
-						id="firstName" placeholder="Nome (opcional)">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="email" class="col-sm-2 control-label">E-Mail</label>
-				<div class="col-sm-6">
-					<input ng-model='participant.email' type="email" name="email" class="form-control"
-						id="email" placeholder="E-Mail">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="" class="col-sm-2 control-label">Género:</label>
-				<div class="col-sm-6">
-					<label class="radio-inline"> 
-					<input type="radio" ng-model='participant.gender' 
-						name="gender" id="male" value="male">Masculino
-					</label> <label class="radio-inline"> 
-					<input type="radio" ng-model='participant.gender'
-						name="gender" id="female" value="female">Feminino
-					</label>
-
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="dob" class="col-sm-2 control-label">Idade</label>
-				<div class="col-sm-6">
-					<input ng-model='participant.age' type="number" name="age" class="form-control"
-						id="age" placeholder="Idade">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="participantId" class="col-sm-2 control-label">Identificação do Participante</label>
-				<div class="col-sm-6">
-					<input ng-model='participant.identifier' type="text" name="participantId" class="form-control"
-						id="participantId" placeholder="Identificação do Participante">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10" >
-<!-- 						     ng-disabled="!(participant.email && participant.gender && participant.age && participant.identifier)"  -->
-					<button  ui-sref='question' 
-						     class="btn btn-primary" 
-						     id="start">Iniciar</button>
-				</div>
-			</div>
-
-		</form>
-
 	</div>
-	<!-- end for class "row" -->
-</div>
-<!-- end for class "container" -->
+
+	<div class="form-group">
+		<label for="email" class="col-sm-2 control-label">E-Mail</label>
+		<div class="col-sm-6">
+			<input ng-model='participant.email' type="email" name="email" class="form-control"
+				id="email" placeholder="E-Mail">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="" class="col-sm-2 control-label">Género:</label>
+		<div class="col-sm-6">
+			<label class="radio-inline"> 
+			<input type="radio" ng-model='participant.gender' 
+				name="gender" id="male" value="male">Masculino
+			</label> <label class="radio-inline"> 
+			<input type="radio" ng-model='participant.gender'
+				name="gender" id="female" value="female">Feminino
+			</label>
+
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="dob" class="col-sm-2 control-label">Idade</label>
+		<div class="col-sm-6">
+			<input ng-model='participant.age' type="number" name="age" class="form-control"
+				id="age" placeholder="Idade">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="participantId" class="col-sm-2 control-label">Identificação do Participante</label>
+		<div class="col-sm-6">
+			<input ng-model='participant.identifier' type="text" name="participantId" class="form-control"
+				id="participantId" placeholder="Identificação do Participante">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10" >
+<!-- 						     ng-disabled="!(participant.email && participant.gender && participant.age && participant.identifier)"  -->
+			<button ui-sref='survey.question' 
+				     class="btn btn-primary" 
+				     id="start">Iniciar <span class="glyphicon glyphicon-circle-arrow-right"></span>
+		 	</button>
+		</div>
+	</div>
+
+</form>

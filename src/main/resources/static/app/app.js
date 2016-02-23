@@ -1,4 +1,7 @@
-angular.module('surveyApp', ['ui.bootstrap','ui.router','ngResource','surveyApp.controllers', 'surveyApp.services'])
+angular
+//	.module('surveyApp', ['ui.bootstrap','ui.router','ngResource','surveyApp.controllers', 'surveyApp.services'])
+	.module('surveyApp', ['ngResource','ui.router', 'surveyApp.controllers', 'surveyApp.services'])
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 	
@@ -6,8 +9,14 @@ angular.module('surveyApp', ['ui.bootstrap','ui.router','ngResource','surveyApp.
 	
 		.state('survey', {
 			url : '/survey',
-	        templateUrl : 'views/setup.html'
+	        templateUrl : 'views/survey.html',
+	        controller : 'SurveyController'
 	    })
+	    
+	     .state('survey.setup', {
+        	url : '/setup',
+            templateUrl : 'views/setup.html'
+        })
 
         .state('survey.participant', {
         	url : '/participant',
@@ -15,22 +24,19 @@ angular.module('surveyApp', ['ui.bootstrap','ui.router','ngResource','surveyApp.
         })
 
         .state('survey.question', {
-        	url : '	/question',
+        	url : '/question',
             templateUrl : 'views/question.html'
         })
-        
+        .state('survey.endblock', {
+        	url : '/endblock',
+        	templateUrl : 'views/endblock.html'
+        })
          .state('survey.end', {
         	url : '/end',
             templateUrl : 'views/thankyou.html'
         })
-        
-          .state('survey.endblock', {
-        	url : '/endblock',
-            templateUrl : 'views/endblock.html'
-        })
-        
         ;
-	$urlRouterProvider.otherwise('/survey');
+	$urlRouterProvider.otherwise('/survey/setup');
 
 })
 ;
