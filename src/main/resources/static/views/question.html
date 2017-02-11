@@ -51,38 +51,29 @@
 								</button> 
 <!-- 									</button> -->
 <!-- 								</a> -->
-<!-- 								<a ui-sref='end'> -->
-<!-- 									<button class="btn btn-default" -->
-<!-- 										ng-disabled='!(selected.fst || selected.snd || selected.selectedAnswer > -1)' -->
-<!-- 										ng-hide="currentQuestionIndex < numberOfQuestions - 1" -->
-<!-- 										ng-click="save(survey)" title="Seguinte"> -->
-<!-- 										Seguinte <span class="glyphicon glyphicon-plus"></span> -->
-<!-- 									</button> -->
-<!-- 								</a> -->
-						</div>
-<!-- 								<a ui-sref='end'> -->
-<!-- 										<button class="btn btn-default" ng-click="save(survey)"  -->
-<!-- 											title="Save">Finalizar</button> -->
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div class="col-md-offset-5"> -->
-<!-- 									</button> -->
-<!-- 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Instruções</button> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+								<a ui-sref='survey.end'>
+									<button class="btn btn-default"
+										ng-disabled='!(selected.fst || selected.snd || selected.selectedAnswer > -1)'
+										ng-hide="currentQuestionIndex < numberOfQuestions - 1"
+										ng-click="save(survey)" title="Finalizar">
+										Finalizar <span class="glyphicon"></span>
+									</button>
+								</a>
+							</div>
 						</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	
+	
 	<div class="row">
-        <div class="col-md-12"><uib-progressbar value="currentQuestionIndex" max="360"></uib-progressbar></div>
+        <div class="col-md-12"><uib-progressbar value="currentBlockQuestion" max="120"></uib-progressbar></div>
     </div>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -91,13 +82,49 @@
         <h4 class="modal-title">Instruções</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
-        <p>Some text in the modal.</p>
-        <p>Some text in the modal.</p>
-        <p>Some text in the modal.</p>
-        <p>Some text in the modal.</p>
-        <p>Some text in the modal.</p>
-        <p>Some text in the modal.</p>
+        <p>De seguida ser-lhe-ão apresentados pares de palavras em Português, Inglês e Alemão.
+			Pense sobre o significado de cada palavra e indique, na sua opinião, numa escala de 1
+			a 9, quanto é que as duas palavras estão relacionadas no seu <b>significado</b>. 
+			Se considerar que as palavras estão muito relacionadas
+			semanticamente, assinale 9. Se considerar que se referem a coisas muito
+			distintas (nada relacionadas) deverá assinalar 1. Poderá utilizar todos os valores da escala.
+			</p>
+			
+			<p><b>Exemplo:</b><p>
+			<p>Se considerar que o par Professor – Docente está relacionado deverá escolher um valor
+			entre 5 e 9, por exemplo 8:</p>
+		
+			<img class='example-img img-responsive img-rounded center-block' src="images/exemplo1.png" alt="Exemplo 1">
+			
+			<p>Se considerar que o par Lua – Mesa não está relacionado deverá assinalar um valor entre
+			1 e 5, por exemplo 1:</p>
+			
+			<div class='row'>
+				<img class='example-img img-responsive img-rounded center-block' src="images/exemplo2.png" alt="Exemplo 2">
+			</div>
+			
+			<p>A avaliação está organizada em três blocos, cada um com uma duração média de 7
+			minutos, dependendo da rapidez das suas respostas. No final de cada bloco, o
+			seguinte iniciar-se-á automaticamente após alguns segundos. Poderá consultar as
+			instruções sempre que necessitar, pressionando o botão “Instruções”.</p>
+			<hr>
+			<h3>Recomendações</h3>
+			<br>
+			<p>Em cada par, as palavras apresentadas poderão pertencer à mesma língua ou a línguas
+			diferentes. A língua de cada palavra estará assinalada pela respectiva bandeira.
+			Lembre-se: as palavras portuguesas correspondem à ortografia <b>anterior</b> ao
+			Acordo Ortográfico.</p>
+	
+			<p>Numa leitura preliminar é possível que confunda algumas palavras, por exemplo
+			que leia uma palavra inglesa com pronúncia alemã. Preste atenção para não
+			cometer erros, não será permitido retroceder.</p>
+	
+			<p>Irá encontrar duas opções ‘Desconheço’, uma para cada
+			palavra. Deverá selecioná-la(s) sempre que desconhecer a(s) respetiva(s)
+			palavra(s). Para fazer as suas avaliações terá de conhecer o significado <u>das duas
+			palavras</u>. Por isso, se em cada par selecionar pelo menos uma opção
+			’Desconheço’, não lhe será permitido avaliar esse par. <u><b>Não se esqueça</b></u>: se desconhecer as duas
+			palavras deverá carregar em ambos os botões ‘Desconheço’.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

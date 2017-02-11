@@ -8,4 +8,5 @@ import mm.survey.webapp.model.Survey;
 @Component
 public interface SurveyRepository extends JpaRepository<Survey, Long>{
 
+	public Survey findByParticipantEmail(String email);
 }

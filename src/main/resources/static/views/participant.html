@@ -47,11 +47,11 @@
 	</div>
 
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10" >
+		<div class="col-sm-offset-2 col-sm-10">
 <!-- 						     ng-disabled="!(participant.email && participant.gender && participant.age && participant.identifier)"  -->
-			<button ui-sref='survey.question' 
-				     class="btn btn-primary" 
-				     id="start">Iniciar <span class="glyphicon glyphicon-circle-arrow-right"></span>
+			<button ui-sref='survey.instructions' ng-disabled="!(participant.email && participant.gender && participant.age && participant.identifier)"
+				     class="btn btn-primary"
+				     id="start">Seguinte <span class="glyphicon glyphicon-circle-arrow-right"></span>
 		 	</button>
 		</div>
 	</div>

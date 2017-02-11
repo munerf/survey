@@ -1,11 +1,16 @@
-angular.module('surveyApp.controllers', [])
-	.controller('SurveyController',['$scope', '$state', '$timeout', 'Survey', function($scope, $state, $timeout, Survey) {
+var module = angular.module('surveyApp.controllers', []);
+
+module
+	.controller('SurveyController',['$scope', '$state', '$stateParams','$timeout', 'Survey', function($scope, $state, $stateParams, $timeout, Survey) {
 
 	$scope.survey = {};
 	
 	$scope.currentQuestion = {};
 	$scope.currentQuestionIndex = 0;
 	$scope.participant = {};
+	$scope.currentBlockQuestion = 0;
+	$scope.survey.startDate = undefined;
+	$scope.survey.endDate = undefined;
 	
 	$scope.selected = {
 			answer : {},
@@ -17,8 +22,10 @@ angular.module('surveyApp.controllers', [])
 	$scope.start = function() {
 		Survey.start({id: $scope.selected.list}, function(result){
 			$scope.survey = result ? result : {};
-			$scope.survey.questions = $scope.survey.questions; //.slice(0,10);
+			$scope.survey.startDate = Date.now();
+			//$scope.survey.questions = $scope.survey.questions.slice(0,15);
 			$scope.numberOfQuestions = $scope.survey.questions.length;
+			$scope.questionsPerBlock = $scope.numberOfQuestions / 3;
 			$scope.currentQuestion = $scope.survey ? $scope.survey.questions[$scope.currentQuestionIndex] : {};
 			$scope.survey.answers = [];	
 			
@@ -26,22 +33,22 @@ angular.module('surveyApp.controllers', [])
 	}
 	
 	$scope.nextQuestion = function(){
-	
 		console.log("current question index " + $scope.currentQuestionIndex);
 		console.log("current question" + $scope.currentQuestion);
 		console.log("current question block" + $scope.currentQuestion.block);
 		console.log("number of questions" + $scope.numberOfQuestions);
-
-
-		$scope.currentQuestionIndex++;
-		$scope.currentQuestion = $scope.survey.questions[$scope.currentQuestionIndex];
 
 		var answer = {
 				question: $scope.currentQuestion, 
 				answer: $scope.selected.selectedAnswer, 
 				firstOptionUnknown : $scope.selected.fst, 
 				secondOptionUnknown : $scope.selected.snd
-				};
+		};
+
+		$scope.currentBlockQuestion++;
+		$scope.currentQuestionIndex++;
+		$scope.currentQuestion = $scope.survey.questions[$scope.currentQuestionIndex];
+
 		
 		$scope.survey.answers.push(answer);
 		console.log($scope.survey.answers);
@@ -51,9 +58,17 @@ angular.module('surveyApp.controllers', [])
 		$scope.selected.selectedAnswer = -1;
 		
 		// check if current block has ended
-		if($scope.currentQuestionIndex == 119 || $scope.currentQuestionIndex == 239 ){
-			$state.go('survey.endblock');
+		var endFirstBlock = ($scope.numberOfQuestions / 3);
+		var endSecondBlock = (endFirstBlock * 2) ;
+		
+		console.log("end of first block", endFirstBlock);
+		console.log("end of snd block", endSecondBlock);
 
+
+		if($scope.currentQuestionIndex == endFirstBlock || $scope.currentQuestionIndex == endSecondBlock ){
+			$scope.currentBlockQuestion = 0;
+			$state.go('survey.endblock');
+			
 			$timeout(function(){
 				$state.go('survey.question')
 			}, 3000);
@@ -62,6 +77,17 @@ angular.module('surveyApp.controllers', [])
 	}
 	
 	$scope.save = function(survey){
+		
+		var answer = {
+				question: $scope.currentQuestion, 
+				answer: $scope.selected.selectedAnswer, 
+				firstOptionUnknown : $scope.selected.fst, 
+				secondOptionUnknown : $scope.selected.snd
+		};
+		
+		$scope.survey.answers.push(answer);
+		$scope.survey.endDate = Date.now();
+		
 		survey.participant = $scope.participant;
 		survey.$update();
 		console.log(survey);
@@ -69,3 +95,23 @@ angular.module('surveyApp.controllers', [])
 
 }]);
 
+
+
+module.controller('StatsController',['$scope', '$state', 'Stats', function($scope, $state, Stats) {
+	$scope.selected = {};
+	$scope.emails = Stats.emails({request: 'emails'});
+	$scope.survey = {};
+	
+//	$scope.getSurvey = function(){
+//		Stats.answers({request: 'answers'}, $scope.selected.email);
+//	}
+	
+	$scope.getSurvey = function(){
+		$scope.survey = Stats.survey({request: 'survey'}, $scope.selected.email);
+	}
+	
+	$scope.getSurveyCSV = function(){
+		$scope.csv = Stats.csv({request: 'csv'}, $scope.selected.email);
+	}
+	
+}]);

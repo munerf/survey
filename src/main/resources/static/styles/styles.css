@@ -1,2 +1,12 @@
 #left-flag { margin-right : 45px; width:20px }
-#right-flag { margin-left : 45px; width:20px  }
+#right-flag { margin-left : 45px; width:20px }
+
+.flag-icon-en {
+  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/1.2.0/flags/4x3/gb.svg);
+}
+
+.example-img {
+	max-width : 50%;
+	padding-top: 10px;
+    padding-bottom: 15px;
+}

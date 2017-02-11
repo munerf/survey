@@ -37,10 +37,10 @@ public class SurveyApplication {
 //	}
 	
 //	
-//	@Bean
-//	CommandLineRunner runner(SurveyRepository sr){
-//		
-//		return args -> {
+	@Bean
+	CommandLineRunner runner(SurveyRepository sr){
+		
+		return args -> {
 //			Question q1 = new Question("1","1");
 //			Question q2 = new Question("2","2");
 //			
@@ -62,12 +62,13 @@ public class SurveyApplication {
 //			survey.setQuestions(questions);
 //			survey.setAnswers(answers);
 //			sr.save(survey);
-//			
-//			sr.findAll().forEach(System.out::println);
-//			
-//			
-//		}; 
 //		
-//	}
+//			Survey p = sr.findByParticipantEmail("abc@gmail.com");
+//			System.err.println(p);
+			
+			
+		}; 
+		
+	}
 
 }

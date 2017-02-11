@@ -1,0 +1,66 @@
+<div class="container">
+	<div class="row">
+		<div class="jumbotron">
+			<h1>Estatísticas</h1>
+<!-- 			<p>Total de Respostas: {{selected.total}}</p> -->
+			<label class="control-label col-sm-2" for="list">Email participante</label>
+				<div class="col-sm-6 col-md-4">
+					<select id="list" class="form-control" ng-model="selected.email" ng-change='getSurvey()'>
+						<option ng-repeat="email in emails" >{{email}}</option>
+					</select>
+				</div>
+		</div>
+		<br>
+		<button type="button" class="btn btn-primary" ng-show="survey.participant" ng-click='getSurveyCSV()'>Download</button>
+		<table class="table table-bordered" ng-show="survey.startDate">
+		    <thead>
+		      <tr>
+		        <th>Hora Inicio</th>
+		        <th>Hora Fim</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>{{survey.startDate.dayOfMonth}}/{{survey.startDate.monthOfYear}} {{survey.startDate.hourOfDay}}:{{survey.startDate.minuteOfHour}}</td>
+                <td>{{survey.endDate.dayOfMonth}}/{{survey.endDate.monthOfYear}} {{survey.endDate.hourOfDay}}:{{survey.endDate.minuteOfHour}}</td>
+		      </tr>
+		    </tbody>
+		</table>
+		<table class="table table-bordered" ng-show="survey.participant">
+		    <thead>
+		      <tr>
+		        <th>Nome</th>
+		        <th>Email</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>{{survey.participant.name}}</td>
+		        <td>{{survey.participant.email}}</td>
+		      </tr>
+		    </tbody>
+		</table>
+		<table class="table table-bordered" ng-show="survey.answers">
+		    <thead>
+		      <tr>
+		        <th>Palavra 1</th>
+		        <th>Desconheço</th>
+		        <th>Palavra 2</th>
+		        <th>Desconheço</th>
+		        <th>Resposta</th>
+		        <th>Bloco</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr ng-repeat="answer in survey.answers">
+		        <td>{{answer.question.firstChoice}}</td>
+		        <td>{{answer.question.firstOptionUnknown}}</td>
+		        <td>{{answer.question.secondChoice}}</td>
+		        <td>{{answer.question.secondOptionUnknown}}</td>
+		        <td>{{answer.answer}}</td>
+		        <td>{{answer.question.block}}</td>
+		      </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>

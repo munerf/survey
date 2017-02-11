@@ -12,6 +12,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long>{
 	
 	public Set<Question> findByList(int list);
 	
+	public Set<Question> findByListOrderById(int list);
+	
 	public Set<Question> findByListAndBlock(int list, String block);
 	
 }
